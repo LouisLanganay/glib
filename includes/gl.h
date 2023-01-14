@@ -38,6 +38,23 @@
     } events_l;
 
     /**
+     * @brief button_s struct for button management
+     */
+    typedef struct button_s {
+        int id;
+        sfVector2f pos;
+        sfConvexShape *shape;
+        sfTexture *texture;
+        void (*call_action)(void *button);
+        struct button_s *next;
+    } button_s;
+
+
+
+
+
+
+    /**
      * @brief create window
      * @param width Width of the window
      * @param height Height of the window
@@ -68,5 +85,12 @@
      * @param events List of events
      */
     void gl_check_events(window_s *window, events_l *events);
+
+    /**
+     * @brief create button
+     * @param buttons Buttons list
+     * @param button Button struct to create
+     */
+    void gl_create_button(button_s **buttons, button_s *button);
 
 #endif
