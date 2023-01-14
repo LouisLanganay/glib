@@ -11,6 +11,8 @@
 int main(void)
 {
 
-    window_s *window = gl_init_window(800, 600, "My window");
-    
+    window_s *window = gl_init_window(800, 600, "My window", 60);
+    while (sfRenderWindow_isOpen(window->window)) {
+        sfClock_restart(window->clock);
+    }
 }

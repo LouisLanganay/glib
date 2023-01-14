@@ -7,13 +7,35 @@
 
 #include "../gl.h"
 
-window_s *gl_init_window(int width, int height, char *title)
+static int check_errors(int width, int height, char *title, int framerate)
 {
+    if (width <= 0 || height <= 0)
+        return write(2, "(gl_init_window) width or height is invalid\n", 44);
+    if (framerate <= 0)
+        return write(2, "(gl_init_window) framerate is invalid\n", 38);
+    if (width > 1920 || height > 1080)
+        return write(2, "(gl_init_window) width or height is too big\n", 44);
+    return 0;
+}
+
+window_s *gl_init_window(int width, int height, char *title, int framerate)
+{
+    if (check_errors(width, height, title, framerate) != 0)
+        exit(84);
+
     window_s *window = malloc(sizeof(window_s));
+    if (!window)
+        exit(84);
+
     window->mode = (sfVideoMode){width, height, 32};
     window->window = sfRenderWindow_create(window->mode,
         title, sfTitlebar | sfClose, 0);
     window->clock = sfClock_create();
     window->event;
+
+    if (!window->window)
+        exit(84);
+
+    sfRenderWindow_setFramerateLimit(window->window, framerate);
     return (window);
 }

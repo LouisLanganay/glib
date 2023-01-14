@@ -14,6 +14,7 @@
     #include <SFML/Audio.h>
     #include <SFML/Network.h>
     #include <stdlib.h>
+    #include <unistd.h>
 
 
     /**
@@ -31,8 +32,9 @@
      * @param width Width of the window
      * @param height Height of the window
      * @param title Title of the window
+     * @param framerate Framerate of the window
      * @return window_s* Return a window_s struct
      */
-    window_s *gl_init_window(int width, int height, char *title);
+    window_s *gl_init_window(int width, int height, char *title, int framerate);
 
 #endif
