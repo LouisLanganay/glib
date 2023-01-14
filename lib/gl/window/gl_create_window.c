@@ -7,7 +7,7 @@
 
 #include "../gl.h"
 
-static int check_errors(int width, int height, char *title, int framerate)
+static int handle_error(int width, int height, char *title, int framerate)
 {
     if (width <= 0 || height <= 0)
         return write(2, "(gl_init_window) width or height is invalid\n", 44);
@@ -20,7 +20,7 @@ static int check_errors(int width, int height, char *title, int framerate)
 
 window_s *gl_create_window(int width, int height, char *title, int framerate)
 {
-    if (check_errors(width, height, title, framerate) != 0)
+    if (handle_error(width, height, title, framerate) != 0)
         exit(84);
 
     window_s *window = malloc(sizeof(window_s));

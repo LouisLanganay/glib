@@ -22,7 +22,7 @@ int main(void)
     gl_create_event(888, sfEvtKeyPressed, event_window_close, &rpg->events);
 
     while (sfRenderWindow_isOpen(rpg->window->window)) {
-        gl_check_events_list(rpg->window, rpg->events);
+        gl_check_events(rpg->window, rpg->events);
         sfClock_restart(rpg->window->clock);
     }
 }

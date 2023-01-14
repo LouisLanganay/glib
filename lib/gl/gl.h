@@ -50,6 +50,7 @@
     /**
      * @brief create event
      * @param type Event type (sfEvtClosed, sfEvtKeyPressed, ...)
+     * @param id Event id
      * @param event Event function
      * @param events List of events
      * @return events_l* Return a events_l struct
@@ -66,6 +67,6 @@
      * @param window Window struct
      * @param events List of events
      */
-    void gl_check_events_list(window_s *window, events_l *events);
+    void gl_check_events(window_s *window, events_l *events);
 
 #endif
