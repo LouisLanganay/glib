@@ -18,7 +18,7 @@ static int check_errors(int width, int height, char *title, int framerate)
     return 0;
 }
 
-window_s *gl_init_window(int width, int height, char *title, int framerate)
+window_s *gl_create_window(int width, int height, char *title, int framerate)
 {
     if (check_errors(width, height, title, framerate) != 0)
         exit(84);

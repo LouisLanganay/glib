@@ -14,12 +14,11 @@
     #include <SFML/Audio.h>
     #include <SFML/Network.h>
 
-    typedef struct csfml_s {
-        sfRenderWindow* window;
-        sfVideoMode mode;
-        sfClock* clock;
-        sfEvent event;
-    } csfml_s;
+    #include "gl.h"
 
+    typedef struct rpg_s {
+        window_s *window;
+        events_l *events;
+    } rpg_s;
 
 #endif

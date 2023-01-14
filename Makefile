@@ -40,6 +40,8 @@ $(NAME): $(OBJ) $(SRC)
 clean:
 	@ $(RM) *.gcda
 	@ $(RM) *.gcno
+	@ $(RM) *.gcov
+	@ $(RM) vgcore.*
 	@ $(RM)	$(OBJ)
 
 fclean: clean

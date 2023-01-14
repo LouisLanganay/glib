@@ -11,10 +11,13 @@ NAME = libgl.a
 
 
 VPATH := ./window
+VPATH += ./events
 
 vpath %.c $(VPATH)
 
-SRC := gl_init_window.c
+SRC := gl_create_window.c
+SRC += gl_create_event.c
+SRC += gl_check_events.c
 
 
 
