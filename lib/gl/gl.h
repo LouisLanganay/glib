@@ -98,12 +98,35 @@
      */
     void gl_check_events(window_s *window, events_l *events);
 
+    /**
+     * @brief Create a button object
+     * @param buttons Buttons list
+     * @param button Button struct
+     * @return int Return 0 if success, 84 if error
+     */
     int gl_create_button(buttons_l **buttons, buttons_l *button);
 
+    /**
+     * @brief Create a button object
+     * @param id Button id
+     * @param buttons Buttons list
+     * @param window Window struct
+     */
     void gl_draw_button(int id, buttons_l **buttons, window_s *window);
 
+    /**
+     * @brief Check if a button is hovered
+     * @param buttons Buttons list
+     * @param window Window struct
+     */
     void gl_buttons_hovered(buttons_l **buttons, window_s *window);
 
+    /**
+     * @brief Change button state (disabled or not)
+     * @param id Button id
+     * @param buttons Buttons list
+     * @param state State of the button (sfTrue or sfFalse)
+     */
     void gl_button_change_state(int id, buttons_l **buttons, sfBool state);
 
 #endif

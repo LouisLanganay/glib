@@ -83,4 +83,5 @@ int gl_create_button(buttons_l **buttons, buttons_l *button)
     tmp->next = *buttons;
     *buttons = tmp;
     free(button);
+    return (0);
 }
