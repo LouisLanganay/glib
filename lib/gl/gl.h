@@ -56,6 +56,17 @@
         struct buttons_l *next;
     } buttons_l;
 
+    /**
+     * @brief scenes_l struct for scenes management
+     */
+    typedef struct scenes_l {
+        int id;
+        int *buttons;
+        int *texts;
+        int *sprites;
+        struct scenes_l *next;
+    } scenes_t;
+
 
 
 
@@ -128,5 +139,13 @@
      * @param state State of the button (sfTrue or sfFalse)
      */
     void gl_button_change_state(int id, buttons_l **buttons, sfBool state);
+
+    /**
+     * @brief Create a scene object
+     * @param scenes Scenes list
+     * @param id Scene id
+     * @return int Return 0 if success, 84 if error
+     */
+    int gl_create_scene(scenes_t **scenes, int id);
 
 #endif
