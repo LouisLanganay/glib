@@ -10,7 +10,7 @@
 static int handle_errors(window_s *window, events_l *events)
 {
     if (!window || !events)
-        write(2, "(gl_check_events) window or events is NULL", 42);
+        write(2, "(gl_check_events) window or events is NULL\n", 43);
     return (0);
 }
 

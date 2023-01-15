@@ -16,6 +16,8 @@
     #include <stdlib.h>
     #include <unistd.h>
 
+    #define SCENE_ARRAY_SIZE 100;
+
 
     /**
      * @brief window_s struct for window management
@@ -56,19 +58,30 @@
         struct buttons_l *next;
     } buttons_l;
 
-
-
-
-
+    /**
+     * @brief scenes_l struct for scenes management
+     */
+    typedef struct scenes_l {
+        int id;
+        int *buttons;
+        int *texts;
+        int *sprites;
+        struct scenes_l *next;
+    } scenes_t;
 
     /**
-     * @brief create window
-     * @param width Width of the window
-     * @param height Height of the window
-     * @param title Title of the window
-     * @param framerate Framerate of the window
-     * @return window_s* Return a window_s struct
+     * @brief GLib_t struct for glib management
      */
+    typedef struct GLib_s {
+        window_s *window;
+        events_l *events;
+        buttons_l *buttons;
+        scenes_t *scenes;
+    } GLib_t;
+
+
+
+
     window_s *gl_create_window(
         int width,
         int height,
@@ -76,34 +89,27 @@
         int framerate
     );
 
-    /**
-     * @brief create event
-     * @param type Event type (sfEvtClosed, sfEvtKeyPressed, ...)
-     * @param id Event id
-     * @param event Event function
-     * @param events List of events
-     * @return events_l* Return a events_l struct
-     */
-    void gl_create_event(
+    int gl_create_event(
+        GLib_t *glib,
         int id,
         sfEventType type,
-        void (*event)(window_s *window),
-        events_l **events
+        void (*event)(window_s *window)
     );
 
-    /**
-     * @brief check events
-     * @param window Window struct
-     * @param events List of events
-     */
     void gl_check_events(window_s *window, events_l *events);
 
-    int gl_create_button(buttons_l **buttons, buttons_l *button);
+    int gl_create_button(GLib_t *glib, buttons_l *button);
 
-    void gl_draw_button(int id, buttons_l **buttons, window_s *window);
+    void gl_draw_button(int id, buttons_l *buttons, window_s *window);
 
-    void gl_buttons_hovered(buttons_l **buttons, window_s *window);
+    void gl_buttons_hovered(buttons_l *buttons, window_s *window);
 
-    void gl_button_change_state(int id, buttons_l **buttons, sfBool state);
+    void gl_button_change_state(int id, buttons_l *buttons, sfBool state);
+
+    int gl_create_scene(GLib_t *glib, int id);
+
+    int gl_add_button_to_scene(GLib_t *glib, int scene_id, int button_id);
+
+    void gl_draw_scene(GLib_t *glib, int id);
 
 #endif

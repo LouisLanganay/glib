@@ -18,14 +18,14 @@ static int gl_create_event_check_id(events_l *events, int id)
     return (0);
 }
 
-void gl_create_event(
+int gl_create_event(
+    GLib_t *glib,
     int id,
     sfEventType type,
-    void (*event)(window_s *window),
-    events_l **events
+    void (*event)(window_s *window)
 )
 {
-    if (gl_create_event_check_id(*events, id) != 0)
+    if (gl_create_event_check_id(glib->events, id) != 0)
         exit (84);
 
     events_l *tmp = malloc(sizeof(*tmp));
@@ -36,6 +36,6 @@ void gl_create_event(
     tmp->type = type;
     tmp->event = event;
 
-    tmp->next = *events;
-    *events = tmp;
+    tmp->next = glib->events;
+    glib->events = tmp;
 }

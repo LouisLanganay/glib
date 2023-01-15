@@ -42,9 +42,9 @@ static void gl_button_not_hovered(buttons_l *tmp)
     tmp->rect.left = 0;
 }
 
-void gl_buttons_hovered(buttons_l **buttons, window_s *window)
+void gl_buttons_hovered(buttons_l *buttons, window_s *window)
 {
-    buttons_l *tmp = *buttons;
+    buttons_l *tmp = buttons;
     sfVector2i posM = sfMouse_getPositionRenderWindow(window->window);
     while (tmp != NULL) {
         if (tmp->disabled == sfTrue) {

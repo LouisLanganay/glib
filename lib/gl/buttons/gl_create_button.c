@@ -38,9 +38,9 @@ static void gl_create_button_set_sounds(buttons_l *tmp, buttons_l *button)
 
 static int handle_error(buttons_l *button)
 {
-    if (button->id < 0)
+    if (button->id < 1)
         return write(2,
-            "(gl_create_button) Button id can't be negative\n", 47);
+            "(gl_create_button) Button id can't be negative or 0\n", 52);
     if (button->pos.x < 0 || button->pos.y < 0)
         return write(2,
             "(gl_create_button) Button position can't be negative\n", 54);
@@ -63,9 +63,9 @@ static void gl_create_button_set_textures(buttons_l *tmp)
     sfSprite_setPosition(tmp->sprite, tmp->pos);
 }
 
-int gl_create_button(buttons_l **buttons, buttons_l *button)
+int gl_create_button(GLib_t *glib, buttons_l *button)
 {
-    if (gl_create_button_check_id(*buttons, button->id) != 0)
+    if (gl_create_button_check_id(glib->buttons, button->id) != 0)
         return (84);
     if (handle_error(button) != 0)
         return (84);
@@ -82,8 +82,8 @@ int gl_create_button(buttons_l **buttons, buttons_l *button)
     tmp->disabled = sfFalse;
     gl_create_button_set_sounds(tmp, button);
     gl_create_button_set_textures(tmp);
-    tmp->next = *buttons;
-    *buttons = tmp;
+    tmp->next = glib->buttons;
+    glib->buttons = tmp;
     free(button);
     return (0);
 }

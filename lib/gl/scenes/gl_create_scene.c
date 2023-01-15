@@ -25,21 +25,28 @@ static int gl_create_scene_check_id(scenes_t *scenes, int id)
     return (0);
 }
 
-int gl_create_scene(scenes_t **scenes, int id)
+int gl_create_scene(GLib_t *glib, int id)
 {
     if (handle_error(id) != 0)
         return (84);
-    if (gl_create_scene_check_id(*scenes, id) != 0)
+    if (gl_create_scene_check_id(glib->scenes, id) != 0)
         return (84);
     scenes_t *tmp = malloc(sizeof(*tmp));
     if (tmp == NULL)
         return write(2, "(gl_create_scene) Malloc failed\n", 32);
     tmp->id = id;
-    tmp->buttons = NULL;
-    tmp->texts = NULL;
-    tmp->sprites = NULL;
+    tmp->buttons = malloc(sizeof(int) * 100);
+    int x = SCENE_ARRAY_SIZE;
+    for (int i = 0; i < x; i++)
+        tmp->buttons[i] = 0;
+    tmp->texts = malloc(sizeof(int) * 100);
+    for (int i = 0; i < x; i++)
+        tmp->texts[i] = 0;
+    tmp->sprites = malloc(sizeof(int) * 100);
+    for (int i = 0; i < x; i++)
+        tmp->sprites[i] = 0;
 
-    tmp->next = *scenes;
-    *scenes = tmp;
+    tmp->next = glib->scenes;
+    glib->scenes = tmp;
     return (0);
 }

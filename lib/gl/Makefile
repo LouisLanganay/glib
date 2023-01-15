@@ -13,6 +13,7 @@ NAME = libgl.a
 VPATH := ./window
 VPATH += ./events
 VPATH += ./buttons
+VPATH += ./scenes
 
 vpath %.c $(VPATH)
 
@@ -23,6 +24,9 @@ SRC += gl_create_button.c
 SRC += gl_draw_button.c
 SRC += gl_buttons_hovered.c
 SRC += gl_button_change_state.c
+SRC += gl_add_button_to_scene.c
+SRC += gl_create_scene.c
+SRC += gl_draw_scene.c
 
 
 

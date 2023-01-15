@@ -20,17 +20,17 @@ void test(int id)
 
 int main(void)
 {
-    rpg_s *rpg = malloc(sizeof(rpg_s));
-    rpg->window = gl_create_window(1920, 1080, "My window", 60);
-    rpg->events = NULL;
-    rpg->buttons = NULL;
-    gl_create_event(544, sfEvtClosed, event_window_close, &rpg->events);
-    gl_create_event(888, sfEvtKeyPressed, event_window_close, &rpg->events);
+    GLib_t *glib = malloc(sizeof(GLib_t));
+    glib->window = gl_create_window(1920, 1080, "My window", 60);
+    glib->events = NULL;
+    glib->buttons = NULL;
+    gl_create_event(glib, 544, sfEvtClosed, event_window_close);
+    gl_create_event(glib, 888, sfEvtKeyPressed, event_window_close);
 
 
 
     buttons_l *my_btn = malloc(sizeof(buttons_l));
-    my_btn->id = 0;
+    my_btn->id = 1;
     my_btn->pos = (sfVector2f){0, 0};
     my_btn->sprite = sfSprite_create();
     my_btn->texture = sfTexture_createFromFile("assets/btn/t.png", NULL);
@@ -38,15 +38,17 @@ int main(void)
     my_btn->call_action = test;
     my_btn->sb_hover = sfSoundBuffer_createFromFile("assets/btn/button1.ogg");
     my_btn->sb_click = sfSoundBuffer_createFromFile("assets/btn/button1.ogg");
-    gl_create_button(&rpg->buttons, my_btn);
+    gl_create_button(glib, my_btn);
+    gl_create_scene(glib, 1);
+    gl_add_button_to_scene(glib, 1, 1);
 
-    while (sfRenderWindow_isOpen(rpg->window->window)) {
-        gl_draw_button(0, &rpg->buttons, rpg->window);
-        gl_buttons_hovered(&rpg->buttons, rpg->window);
-        gl_check_events(rpg->window, rpg->events);
-        sfClock_restart(rpg->window->clock);
+    while (sfRenderWindow_isOpen(glib->window->window)) {
+        gl_draw_scene(glib, 1);
+        gl_buttons_hovered(glib->buttons, glib->window);
+        gl_check_events(glib->window, glib->events);
+        sfClock_restart(glib->window->clock);
 
-        sfRenderWindow_display(rpg->window->window);
-        sfRenderWindow_clear(rpg->window->window, sfBlack);
+        sfRenderWindow_display(glib->window->window);
+        sfRenderWindow_clear(glib->window->window, sfBlack);
     }
 }
