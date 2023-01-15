@@ -12,13 +12,24 @@ NAME = libgl.a
 
 VPATH := ./window
 VPATH += ./events
+VPATH += ./sprites
+VPATH += ./texts
 
 vpath %.c $(VPATH)
 
 SRC := gl_create_window.c
 SRC += gl_create_event.c
 SRC += gl_check_events.c
-
+SRC += gl_create_sprite.c
+SRC += gl_draw_sprites.c
+SRC += gl_draw_sprite_id.c
+SRC += gl_delete_sprite_id.c
+SRC += gl_delete_sprites.c
+SRC += gl_create_text.c
+SRC += gl_delete_text.c
+SRC += gl_delete_texts.c
+SRC += gl_draw_text.c
+SRC += gl_draw_texts.c
 
 
 INC_DIR := ../../includes

@@ -28,7 +28,7 @@ void gl_create_button(button_s **buttons, button_s *button)
     tmp->shape = button->shape;
     tmp->texture = button->texture;
     tmp->call_action = button->call_action;
-    
+
     tmp->next = *buttons;
     *buttons = tmp;
 }
