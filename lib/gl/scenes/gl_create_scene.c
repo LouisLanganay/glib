@@ -14,10 +14,10 @@ static int handle_error(int id)
     return (0);
 }
 
-static int gl_create_scene_check_id(scenes_t *scenes, int id)
+static int gl_create_scene_check_id(GLib_t *glib, int id)
 {
-    scenes_t *tmp = scenes;
-    while (tmp != NULL) {
+    scenes_t *tmp = glib->scenes;
+    while (tmp) {
         if (tmp->id == id)
             return write(2, "(gl_create_scene) Scene id already exist\n", 41);
         tmp = tmp->next;
@@ -29,7 +29,7 @@ int gl_create_scene(GLib_t *glib, int id)
 {
     if (handle_error(id) != 0)
         return (84);
-    if (gl_create_scene_check_id(glib->scenes, id) != 0)
+    if (gl_create_scene_check_id(glib, id) != 0)
         return (84);
     scenes_t *tmp = malloc(sizeof(*tmp));
     if (tmp == NULL)

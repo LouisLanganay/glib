@@ -30,12 +30,14 @@ int gl_create_text(GLib_t *glib, text_t *text)
     tmp->scale = text->scale;
     tmp->color = text->color;
     tmp->string = text->string;
+    tmp->size = text->size;
     tmp->text = sfText_create();
     sfText_setColor(tmp->text, tmp->color);
     sfText_setString(tmp->text, tmp->string);
     sfText_setPosition(tmp->text, tmp->pos);
     sfText_setScale(tmp->text, tmp->scale);
     sfText_setFont(tmp->text, tmp->font);
+    sfText_setCharacterSize(tmp->text, tmp->size);
     tmp->next = glib->texts;
     glib->texts = tmp;
 }

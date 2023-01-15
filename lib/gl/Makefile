@@ -52,7 +52,7 @@ all: $(NAME)
 
 $(BUILD_DIR)/%.o: %.c
 	@ mkdir -p $(@D)
-	@ $(CC) $(CFLAGS) $(LIBFLAGS) -c $< -o $@
+	@ $(CC) -g $(LIBFLAGS) -c $< -o $@
 	@ echo -e "${_BLACK}${_BB_WHITE}-> $(CC)    $<${_END}"
 
 $(NAME): $(OBJ) $(SRC)

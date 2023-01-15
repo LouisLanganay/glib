@@ -78,8 +78,10 @@ int gl_create_button(GLib_t *glib, buttons_t *button)
     tmp->texture = button->texture;
     tmp->rect = button->rect;
     tmp->call_action = button->call_action;
-tmp->hovered = sfFalse;
+    tmp->hovered = sfFalse;
     tmp->disabled = sfFalse;
+    tmp->sb_hover = button->sb_hover;
+    tmp->sb_click = button->sb_click;
     gl_create_button_set_sounds(tmp, button);
     gl_create_button_set_textures(tmp);
     tmp->next = glib->buttons;

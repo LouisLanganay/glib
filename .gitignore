@@ -42,6 +42,7 @@
 *.idb
 *.pdb
 vgcore.*
+./SRC
 
 # Kernel Module Compile Results
 *.mod*

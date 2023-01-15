@@ -75,6 +75,7 @@
         sfColor color;
         sfVector2f scale;
         char *string;
+        int size;
         struct text_s *next;
     } text_t;
 
