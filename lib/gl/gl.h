@@ -38,16 +38,19 @@
     } events_l;
 
     /**
-     * @brief button_s struct for button management
+     * @brief buttons_l struct for button management
      */
-    typedef struct button_s {
+    typedef struct buttons_l {
         int id;
+        sfBool hovered;
         sfVector2f pos;
-        sfConvexShape *shape;
+        sfSprite *sprite;
         sfTexture *texture;
-        void (*call_action)(void *button);
-        struct button_s *next;
-    } button_s;
+        sfIntRect rect;
+        sfMusic *s_hover;
+        void (*call_action)(int id);
+        struct buttons_l *next;
+    } buttons_l;
 
 
 
@@ -86,11 +89,10 @@
      */
     void gl_check_events(window_s *window, events_l *events);
 
-    /**
-     * @brief create button
-     * @param buttons Buttons list
-     * @param button Button struct to create
-     */
-    void gl_create_button(button_s **buttons, button_s *button);
+    void gl_create_button(buttons_l **buttons, buttons_l *button);
+
+    void gl_draw_button(int id, buttons_l **buttons, window_s *window);
+
+    void gl_buttons_hovered(buttons_l **buttons, window_s *window);
 
 #endif

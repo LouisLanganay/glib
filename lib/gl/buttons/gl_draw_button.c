@@ -7,6 +7,18 @@
 
 #include "../gl.h"
 
-void gl_draw_button(int id, button_s *buttons, window_s *window)
+void gl_draw_button(int id, buttons_l **buttons, window_s *window)
 {
+    buttons_l *tmp = *buttons;
+    while (tmp != NULL) {
+        if (tmp->id == id) {
+            sfSprite_setTexture(tmp->sprite, tmp->texture, sfTrue);
+            sfSprite_setTextureRect(tmp->sprite, tmp->rect);
+            sfSprite_setPosition(tmp->sprite, tmp->pos);
+            sfRenderWindow_drawSprite(window->window, tmp->sprite, NULL);
+            return;
+        }
+        tmp = tmp->next;
+    }
+    write(2, "(gl_draw_button) Button id not found\n", 37);
 }

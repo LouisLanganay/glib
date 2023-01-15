@@ -12,12 +12,16 @@ NAME = libgl.a
 
 VPATH := ./window
 VPATH += ./events
+VPATH += ./buttons
 
 vpath %.c $(VPATH)
 
 SRC := gl_create_window.c
 SRC += gl_create_event.c
 SRC += gl_check_events.c
+SRC += gl_create_button.c
+SRC += gl_draw_button.c
+SRC += gl_buttons_hovered.c
 
 
 
