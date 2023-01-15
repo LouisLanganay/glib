@@ -7,16 +7,16 @@
 
 #include "../gl.h"
 
-void gl_delete_sprite(sprite_t **sprites, int id)
+void gl_delete_sprite(GLib_t *glib, int id)
 {
-    sprite_t *tmp = *sprites;
+    sprite_t *tmp = glib->sprites;
     sprite_t *prev = NULL;
     while (tmp != NULL) {
         if (tmp->id == id) {
             sfSprite_destroy(tmp->sprite);
             sfTexture_destroy(tmp->texture);
             if (prev == NULL)
-                *sprites = tmp->next;
+                glib->sprites = tmp->next;
             else
                 prev->next = tmp->next;
             free(tmp);

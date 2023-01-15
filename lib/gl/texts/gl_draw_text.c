@@ -7,12 +7,12 @@
 
 #include "../gl.h"
 
-void gl_draw_text(window_t *window, text_t *texts, int id)
+void gl_draw_text(GLib_t *glib, int id)
 {
-    text_t *tmp = texts;
+    text_t *tmp = glib->texts;
     while (tmp != NULL) {
         if (tmp->id == id) {
-            sfRenderWindow_drawText(window->window, tmp->text, NULL);
+            sfRenderWindow_drawText(glib->window->window, tmp->text, NULL);
             return;
         }
         tmp = tmp->next;

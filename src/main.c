@@ -42,13 +42,21 @@ int main(void)
     gl_create_scene(glib, 1);
     gl_add_button_to_scene(glib, 1, 1);
 
+    sprite_t *my_sprite = malloc(sizeof(sprite_t));
+    my_sprite->id = 1;
+    my_sprite->pos = (sfVector2f){0, 0};
+    my_sprite->sprite = sfSprite_create();
+    my_sprite->texture = sfTexture_createFromFile("/home/peron/glib/src/cross.png", NULL);
+    my_sprite->scale = (sfVector2f){1, 1};
+    gl_create_sprite(glib, my_sprite);
+
 
     while (sfRenderWindow_isOpen(glib->window->window)) {
         gl_draw_scene(glib, 1);
         gl_buttons_hovered(glib->buttons, glib->window);
         gl_check_events(glib->window, glib->events);
+        gl_draw_sprites(glib);
         sfClock_restart(glib->window->clock);
-
         sfRenderWindow_display(glib->window->window);
         sfRenderWindow_clear(glib->window->window, sfBlack);
     }

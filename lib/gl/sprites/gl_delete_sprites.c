@@ -7,9 +7,9 @@
 
 #include "../gl.h"
 
-void gl_delete_sprites(sprite_t **sprites)
+void gl_delete_sprites(GLib_t *glib)
 {
-    sprite_t *tmp = *sprites;
+    sprite_t *tmp = glib->sprites;
     sprite_t *next = NULL;
     while (tmp != NULL) {
         next = tmp->next;
@@ -18,5 +18,5 @@ void gl_delete_sprites(sprite_t **sprites)
         free(tmp);
         tmp = next;
     }
-    *sprites = NULL;
+    glib->sprites = NULL;
 }

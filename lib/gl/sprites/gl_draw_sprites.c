@@ -7,11 +7,11 @@
 
 #include "../gl.h"
 
-void gl_draw_sprites(window_t *window, sprite_t *sprites)
+void gl_draw_sprites(GLib_t *glib)
 {
-    sprite_t *tmp = sprites;
+    sprite_t *tmp = glib->sprites;
     while (tmp != NULL) {
-        sfRenderWindow_drawSprite(window->window, tmp->sprite, NULL);
+        sfRenderWindow_drawSprite(glib->window->window, tmp->sprite, NULL);
         tmp = tmp->next;
     }
 }

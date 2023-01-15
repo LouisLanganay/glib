@@ -18,9 +18,9 @@ static int gl_create_text_check_id(text_t *texts, int id)
     return (0);
 }
 
-int gl_create_text(text_t **texts, text_t *text)
+int gl_create_text(GLib_t *glib, text_t *text)
 {
-    if (gl_create_text_check_id(*texts, text->id) != 0)
+    if (gl_create_text_check_id(glib->texts, text->id) != 0)
         return (84);
     text_t *tmp = malloc(sizeof(*tmp));
     tmp->id = text->id;
@@ -36,6 +36,6 @@ int gl_create_text(text_t **texts, text_t *text)
     sfText_setPosition(tmp->text, tmp->pos);
     sfText_setScale(tmp->text, tmp->scale);
     sfText_setFont(tmp->text, tmp->font);
-    tmp->next = *texts;
-    *texts = tmp;
+    tmp->next = glib->texts;
+    glib->texts = tmp;
 }

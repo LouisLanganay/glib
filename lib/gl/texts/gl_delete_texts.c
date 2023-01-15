@@ -7,13 +7,13 @@
 
 #include "../gl.h"
 
-void gl_delete_texts(text_t **texts)
+void gl_delete_texts(GLib_t *glib)
 {
-    text_t *tmp = *texts;
+    text_t *tmp = glib->texts;
     text_t *prev = NULL;
     while (tmp != NULL) {
         if (prev == NULL)
-            *texts = tmp->next;
+            glib->texts = tmp->next;
         else
             prev->next = tmp->next;
         sfText_destroy(tmp->text);

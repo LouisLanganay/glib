@@ -18,9 +18,9 @@ static int gl_create_sprite_check_id(sprite_t *sprites, int id)
     return (0);
 }
 
-int gl_create_sprite(sprite_t **sprites, sprite_t *sprite)
+int gl_create_sprite(GLib_t *glib, sprite_t *sprite)
 {
-    if (gl_create_sprite_check_id(*sprites, sprite->id) != 0)
+    if (gl_create_sprite_check_id(glib->sprites, sprite->id) != 0)
         return (84);
     sprite_t *tmp = malloc(sizeof(*tmp));
     tmp->id = sprite->id;
@@ -36,6 +36,6 @@ int gl_create_sprite(sprite_t **sprites, sprite_t *sprite)
     else
         tmp->call_action = NULL;
 
-    tmp->next = *sprites;
-    *sprites = tmp;
+    tmp->next = glib->sprites;
+    glib->sprites = tmp;
 }
