@@ -16,6 +16,8 @@
     #include <stdlib.h>
     #include <unistd.h>
 
+    #define SCENE_ARRAY_SIZE 100;
+
 
     /**
      * @brief window_s struct for window management
@@ -38,36 +40,34 @@
     } events_l;
 
     /**
-     * @brief button_s struct for button management
+     * @brief buttons_l struct for button management
      */
-    typedef struct button_s {
+    typedef struct buttons_l {
         int id;
-        sfVector2f pos;
-        sfConvexShape *shape;
-        sfTexture *texture;
-        void (*call_action)(void *button);
-        struct button_s *next;
-    } button_s;
-
-    /**
-     * @brief sprite_s struct for sprite management
-     * @param id Sprite id
-     * @param pos Sprite position
-     * @param sprite Sprite
-     * @param texture Sprite texture
-     * @param scale Sprite scale
-     * @param call_action Function to call when sprite is clicked
-     */
-    typedef struct sprite_s {
-        int id;
+        sfBool hovered;
+        sfBool disabled;
         sfVector2f pos;
         sfSprite *sprite;
         sfTexture *texture;
-        sfVector2f scale;
-        void (*call_action)(void *sprite);
-        struct sprite_s *next;
-    } sprite_t;
+        sfIntRect rect;
+        sfSound *ss_hover;
+        sfSoundBuffer *sb_hover;
+        sfSound *ss_click;
+        sfSoundBuffer *sb_click;
+        void (*call_action)(int id);
+        struct buttons_l *next;
+    } buttons_l;
 
+
+    /**
+     * @brief GLib_t struct for glib management
+     */
+    typedef struct GLib_s {
+        window_s *window;
+        events_l *events;
+        buttons_l *buttons;
+        scenes_t *scenes;
+    } GLib_t;
 
     /**
      * @brief text_s struct for text management
@@ -90,44 +90,35 @@
 
 
 
-    /**
-     * @brief create window
-     * @param width Width of the window
-     * @param height Height of the window
-     * @param title Title of the window
-     * @param framerate Framerate of the window
-     * @return window_s* Return a window_s struct
-     */
-    window_s *gl_create_window(int width, int height, char *title, int framerate);
-
-    /**
-     * @brief create event
-     * @param type Event type (sfEvtClosed, sfEvtKeyPressed, ...)
-     * @param id Event id
-     * @param event Event function
-     * @param events List of events
-     * @return events_l* Return a events_l struct
-     */
-    void gl_create_event(
-        int id,
-        sfEventType type,
-        void (*event)(window_s *window),
-        events_l **events
+    window_s *gl_create_window(
+        int width,
+        int height,
+        char *title,
+        int framerate
     );
 
-    /**
-     * @brief check events
-     * @param window Window struct
-     * @param events List of events
-     */
+    int gl_create_event(
+        GLib_t *glib,
+        int id,
+        sfEventType type,
+        void (*event)(window_s *window)
+    );
+
     void gl_check_events(window_s *window, events_l *events);
 
-    /**
-     * @brief create button
-     * @param buttons Buttons list
-     * @param button Button struct to create
-     */
-    void gl_create_button(button_s **buttons, button_s *button);
+    int gl_create_button(GLib_t *glib, buttons_l *button);
+
+    void gl_draw_button(int id, buttons_l *buttons, window_s *window);
+
+    void gl_buttons_hovered(buttons_l *buttons, window_s *window);
+
+    void gl_button_change_state(int id, buttons_l *buttons, sfBool state);
+
+    int gl_create_scene(GLib_t *glib, int id);
+
+    int gl_add_button_to_scene(GLib_t *glib, int scene_id, int button_id);
+
+    void gl_draw_scene(GLib_t *glib, int id);
 
     /**
      * @brief create sprite

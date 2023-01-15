@@ -16,11 +16,4 @@
 
     #include "gl.h"
 
-    typedef struct rpg_s {
-        window_s *window;
-        events_l *events;
-        sprite_t *sprites;
-        text_t *texts;
-        
-    } rpg_s;
 #endif

@@ -42,6 +42,7 @@ clean:
 	@ $(RM) *.gcno
 	@ $(RM) *.gcov
 	@ $(RM) vgcore.*
+	@ $(RM) coding-style-reports.log
 	@ $(RM)	$(OBJ)
 
 fclean: clean
