@@ -24,8 +24,8 @@ window_s *gl_create_window(int width, int height, char *title, int framerate)
         exit(84);
 
     window_s *window = malloc(sizeof(window_s));
-    if (!window)
-        exit(84);
+    if (window == NULL)
+        return write(2, "(gl_create_window) Malloc failed\n", 33);
 
     window->mode = (sfVideoMode){width, height, 32};
     window->window = sfRenderWindow_create(window->mode,

@@ -29,6 +29,8 @@ void gl_create_event(
         exit (84);
 
     events_l *tmp = malloc(sizeof(*tmp));
+    if (tmp == NULL)
+        return write(2, "(gl_create_event) Malloc failed\n", 32);
 
     tmp->id = id;
     tmp->type = type;

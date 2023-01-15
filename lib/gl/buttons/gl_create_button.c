@@ -70,6 +70,8 @@ int gl_create_button(buttons_l **buttons, buttons_l *button)
     if (handle_error(button) != 0)
         return (84);
     buttons_l *tmp = malloc(sizeof(*tmp));
+    if (tmp == NULL)
+        return write(2, "(gl_create_button) Malloc failed\n", 33);
     tmp->id = button->id;
     tmp->pos = button->pos;
     tmp->sprite = button->sprite;
