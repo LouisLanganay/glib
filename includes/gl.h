@@ -43,11 +43,15 @@
     typedef struct buttons_l {
         int id;
         sfBool hovered;
+        sfBool disabled;
         sfVector2f pos;
         sfSprite *sprite;
         sfTexture *texture;
         sfIntRect rect;
-        sfMusic *s_hover;
+        sfSound *ss_hover;
+        sfSoundBuffer *sb_hover;
+        sfSound *ss_click;
+        sfSoundBuffer *sb_click;
         void (*call_action)(int id);
         struct buttons_l *next;
     } buttons_l;
@@ -65,7 +69,12 @@
      * @param framerate Framerate of the window
      * @return window_s* Return a window_s struct
      */
-    window_s *gl_create_window(int width, int height, char *title, int framerate);
+    window_s *gl_create_window(
+        int width,
+        int height,
+        char *title,
+        int framerate
+    );
 
     /**
      * @brief create event
@@ -89,10 +98,12 @@
      */
     void gl_check_events(window_s *window, events_l *events);
 
-    void gl_create_button(buttons_l **buttons, buttons_l *button);
+    int gl_create_button(buttons_l **buttons, buttons_l *button);
 
     void gl_draw_button(int id, buttons_l **buttons, window_s *window);
 
     void gl_buttons_hovered(buttons_l **buttons, window_s *window);
+
+    void gl_button_change_state(int id, buttons_l **buttons, sfBool state);
 
 #endif

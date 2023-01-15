@@ -21,14 +21,19 @@ static void gl_button_hovered(buttons_l *tmp)
 {
     if (tmp->hovered != sfTrue) {
         tmp->hovered = sfTrue;
-        if (tmp->s_hover != NULL) {
-            sfMusic_setPlayingOffset(tmp->s_hover, sfSeconds(0));
-            sfMusic_play(tmp->s_hover);
+        if (tmp->ss_hover != NULL) {
+            sfSound_setPlayingOffset(tmp->ss_hover, sfSeconds(0));
+            sfSound_play(tmp->ss_hover);
         }
     }
     tmp->rect.left = tmp->rect.width;
-    if (tmp->call_action != NULL && sfMouse_isButtonPressed(sfMouseLeft))
+    if (tmp->call_action != NULL && sfMouse_isButtonPressed(sfMouseLeft)) {
+        if (tmp->ss_click != NULL) {
+            sfSound_setPlayingOffset(tmp->ss_click, sfSeconds(0));
+            sfSound_play(tmp->ss_click);
+        }
         tmp->call_action(tmp->id);
+    }
 }
 
 static void gl_button_not_hovered(buttons_l *tmp)
@@ -42,6 +47,10 @@ void gl_buttons_hovered(buttons_l **buttons, window_s *window)
     buttons_l *tmp = *buttons;
     sfVector2i posM = sfMouse_getPositionRenderWindow(window->window);
     while (tmp != NULL) {
+        if (tmp->disabled == sfTrue) {
+            tmp = tmp->next;
+            continue;
+        }
         sfVector2f posB = sfSprite_getPosition(tmp->sprite);
         if (gl_button_in_hovered(tmp, posM) == sfTrue)
             gl_button_hovered(tmp);

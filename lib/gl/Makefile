@@ -22,6 +22,7 @@ SRC += gl_check_events.c
 SRC += gl_create_button.c
 SRC += gl_draw_button.c
 SRC += gl_buttons_hovered.c
+SRC += gl_button_change_state.c
 
 
 

@@ -36,10 +36,9 @@ int main(void)
     my_btn->texture = sfTexture_createFromFile("assets/btn/t.png", NULL);
     my_btn->rect = (sfIntRect){0, 0, 100, 100};
     my_btn->call_action = test;
-    my_btn->s_hover = sfMusic_createFromFile("assets/btn/button1.ogg");
+    my_btn->sb_hover = sfSoundBuffer_createFromFile("assets/btn/button1.ogg");
+    my_btn->sb_click = sfSoundBuffer_createFromFile("assets/btn/button1.ogg");
     gl_create_button(&rpg->buttons, my_btn);
-
-
 
     while (sfRenderWindow_isOpen(rpg->window->window)) {
         gl_draw_button(0, &rpg->buttons, rpg->window);
