@@ -19,29 +19,20 @@
     #define SCENE_ARRAY_SIZE 100;
 
 
-    /**
-     * @brief window_s struct for window management
-     */
     typedef struct window_s {
         sfRenderWindow* window;
         sfVideoMode mode;
         sfClock* clock;
         sfEvent event;
-    } window_s;
+    } window_t;
 
-    /**
-     * @brief events_l struct for event management
-     */
     typedef struct events_l {
         int id;
         sfEventType type;
-        void (*event)(window_s *window);
+        void (*event)(window_t *window);
         struct events_l *next;
-    } events_l;
+    } events_t;
 
-    /**
-     * @brief buttons_l struct for button management
-     */
     typedef struct buttons_l {
         int id;
         sfBool hovered;
@@ -56,27 +47,26 @@
         sfSoundBuffer *sb_click;
         void (*call_action)(int id);
         struct buttons_l *next;
-    } buttons_l;
+    } buttons_t;
 
+    typedef struct sprite_s {
+        int id;
+        sfVector2f pos;
+        sfSprite *sprite;
+        sfTexture *texture;
+        sfVector2f scale;
+        void (*call_action)(void *sprite);
+        struct sprite_s *next;
+    } sprite_t;
 
-    /**
-     * @brief GLib_t struct for glib management
-     */
-    typedef struct GLib_s {
-        window_s *window;
-        events_l *events;
-        buttons_l *buttons;
-        scenes_t *scenes;
-    } GLib_t;
+    typedef struct scenes_l {
+        int id;
+        int *buttons;
+        int *texts;
+        int *sprites;
+        struct scenes_l *next;
+    } scenes_t;
 
-    /**
-     * @brief text_s struct for text management
-     * @param id Text id
-     * @param pos Text position
-     * @param text Text
-     * @param font Text font
-     * @param scale Text scale
-     */
     typedef struct text_s {
         int id;
         sfVector2f pos;
@@ -88,9 +78,18 @@
         struct text_s *next;
     } text_t;
 
+    typedef struct GLib_s {
+        window_t *window;
+        events_t *events;
+        buttons_t *buttons;
+        scenes_t *scenes;
+        sprite_t *sprites;
+        text_t *texts;
+    } GLib_t;
 
 
-    window_s *gl_create_window(
+
+    window_t *gl_create_window(
         int width,
         int height,
         char *title,
@@ -101,18 +100,18 @@
         GLib_t *glib,
         int id,
         sfEventType type,
-        void (*event)(window_s *window)
+        void (*event)(window_t *window)
     );
 
-    void gl_check_events(window_s *window, events_l *events);
+    void gl_check_events(window_t *window, events_t *events);
 
-    int gl_create_button(GLib_t *glib, buttons_l *button);
+    int gl_create_button(GLib_t *glib, buttons_t *button);
 
-    void gl_draw_button(int id, buttons_l *buttons, window_s *window);
+    void gl_draw_button(int id, buttons_t *buttons, window_t *window);
 
-    void gl_buttons_hovered(buttons_l *buttons, window_s *window);
+    void gl_buttons_hovered(buttons_t *buttons, window_t *window);
 
-    void gl_button_change_state(int id, buttons_l *buttons, sfBool state);
+    void gl_button_change_state(int id, buttons_t *buttons, sfBool state);
 
     int gl_create_scene(GLib_t *glib, int id);
 
@@ -133,7 +132,7 @@
      * @param window Window struct
      * @param sprites Sprites list
      */
-    void gl_draw_sprites(window_s *window, sprite_t *sprites);
+    void gl_draw_sprites(window_t *window, sprite_t *sprites);
 
     /**
      * @brief draw sprite id
@@ -141,7 +140,7 @@
      * @param sprites
      * @param id
      */
-    void gl_draw_sprite(window_s *window, sprite_t *sprites, int id);
+    void gl_draw_sprite(window_t *window, sprite_t *sprites, int id);
 
     /**
      * @brief delete sprite id
@@ -182,7 +181,7 @@
      * @param window
      * @param texts
      */
-    void gl_draw_texts(window_s *window, text_t *texts);
+    void gl_draw_texts(window_t *window, text_t *texts);
 
     /**
      * @brief draw text id
@@ -190,5 +189,5 @@
      * @param texts
      * @param id
      */
-    void gl_draw_text(window_s *window, text_t *texts, int id);
+    void gl_draw_text(window_t *window, text_t *texts, int id);
 #endif

@@ -7,9 +7,9 @@
 
 #include "../gl.h"
 
-void gl_draw_button(int id, buttons_l *buttons, window_s *window)
+void gl_draw_button(int id, buttons_t *buttons, window_t *window)
 {
-    buttons_l *tmp = buttons;
+    buttons_t *tmp = buttons;
     while (tmp != NULL) {
         if (tmp->id == id) {
             sfSprite_setTexture(tmp->sprite, tmp->texture, sfTrue);

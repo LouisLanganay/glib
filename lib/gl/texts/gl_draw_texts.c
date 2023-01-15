@@ -7,7 +7,7 @@
 
 #include "../gl.h"
 
-void gl_draw_texts(window_s *window, text_t *texts)
+void gl_draw_texts(window_t *window, text_t *texts)
 {
     text_t *tmp = texts;
     while (tmp != NULL) {

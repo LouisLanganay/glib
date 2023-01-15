@@ -7,9 +7,9 @@
 
 #include "../gl.h"
 
-void gl_button_change_state(int id, buttons_l *buttons, sfBool state)
+void gl_button_change_state(int id, buttons_t *buttons, sfBool state)
 {
-    buttons_l *tmp = buttons;
+    buttons_t *tmp = buttons;
     while (tmp != NULL) {
         if (tmp->id == id) {
             tmp->disabled = state;

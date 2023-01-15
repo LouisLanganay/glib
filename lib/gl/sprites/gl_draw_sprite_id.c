@@ -7,7 +7,7 @@
 
 #include "../gl.h"
 
-void gl_draw_sprite(window_s *window, sprite_t *sprites, int id)
+void gl_draw_sprite(window_t *window, sprite_t *sprites, int id)
 {
     sprite_t *tmp = sprites;
     while (tmp != NULL) {

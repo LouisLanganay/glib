@@ -7,9 +7,9 @@
 
 #include "../gl.h"
 
-static int gl_create_event_check_id(events_l *events, int id)
+static int gl_create_event_check_id(events_t *events, int id)
 {
-    events_l *tmp = events;
+    events_t *tmp = events;
     while (tmp != NULL) {
         if (tmp->id == id)
             return write(2, "(gl_create_event) Event id already exist\n", 41);
@@ -22,13 +22,13 @@ int gl_create_event(
     GLib_t *glib,
     int id,
     sfEventType type,
-    void (*event)(window_s *window)
+    void (*event)(window_t *window)
 )
 {
     if (gl_create_event_check_id(glib->events, id) != 0)
         exit (84);
 
-    events_l *tmp = malloc(sizeof(*tmp));
+    events_t *tmp = malloc(sizeof(*tmp));
     if (tmp == NULL)
         return write(2, "(gl_create_event) Malloc failed\n", 32);
 

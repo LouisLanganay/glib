@@ -8,9 +8,9 @@
 #include "../gl.h"
 
 static void gl_draw_scene_buttons(
-    window_s *window,
+    window_t *window,
     scenes_t *tmp,
-    buttons_l *buttons
+    buttons_t *buttons
 )
 {
     int x = SCENE_ARRAY_SIZE;

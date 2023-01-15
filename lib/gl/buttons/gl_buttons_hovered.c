@@ -7,7 +7,7 @@
 
 #include "../gl.h"
 
-static sfBool gl_button_in_hovered(buttons_l *button, sfVector2i posM)
+static sfBool gl_button_in_hovered(buttons_t *button, sfVector2i posM)
 {
     sfVector2f posB = sfSprite_getPosition(button->sprite);
     if (posM.x >= posB.x && posM.x <= posB.x + button->rect.width &&
@@ -17,7 +17,7 @@ static sfBool gl_button_in_hovered(buttons_l *button, sfVector2i posM)
     return sfFalse;
 }
 
-static void gl_button_hovered(buttons_l *tmp)
+static void gl_button_hovered(buttons_t *tmp)
 {
     if (tmp->hovered != sfTrue) {
         tmp->hovered = sfTrue;
@@ -36,15 +36,15 @@ static void gl_button_hovered(buttons_l *tmp)
     }
 }
 
-static void gl_button_not_hovered(buttons_l *tmp)
+static void gl_button_not_hovered(buttons_t *tmp)
 {
     tmp->hovered = sfFalse;
     tmp->rect.left = 0;
 }
 
-void gl_buttons_hovered(buttons_l *buttons, window_s *window)
+void gl_buttons_hovered(buttons_t *buttons, window_t *window)
 {
-    buttons_l *tmp = buttons;
+    buttons_t *tmp = buttons;
     sfVector2i posM = sfMouse_getPositionRenderWindow(window->window);
     while (tmp != NULL) {
         if (tmp->disabled == sfTrue) {

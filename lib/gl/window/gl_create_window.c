@@ -18,12 +18,12 @@ static int handle_error(int width, int height, char *title, int framerate)
     return 0;
 }
 
-window_s *gl_create_window(int width, int height, char *title, int framerate)
+window_t *gl_create_window(int width, int height, char *title, int framerate)
 {
     if (handle_error(width, height, title, framerate) != 0)
         exit(84);
 
-    window_s *window = malloc(sizeof(window_s));
+    window_t *window = malloc(sizeof(window_t));
 
     window->mode = (sfVideoMode){width, height, 32};
     window->window = sfRenderWindow_create(window->mode,

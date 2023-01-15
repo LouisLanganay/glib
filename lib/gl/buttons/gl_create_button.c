@@ -7,9 +7,9 @@
 
 #include "../gl.h"
 
-static int gl_create_button_check_id(buttons_l *buttons, int id)
+static int gl_create_button_check_id(buttons_t *buttons, int id)
 {
-    buttons_l *tmp = buttons;
+    buttons_t *tmp = buttons;
     while (tmp != NULL) {
         if (tmp->id == id)
             return write(2, "(gl_create_button) Button id already exist\n", 43);
@@ -18,7 +18,7 @@ static int gl_create_button_check_id(buttons_l *buttons, int id)
     return (0);
 }
 
-static void gl_create_button_set_sounds(buttons_l *tmp, buttons_l *button)
+static void gl_create_button_set_sounds(buttons_t *tmp, buttons_t *button)
 {
     if (tmp->sb_hover != NULL) {
         tmp->sb_hover = button->sb_hover;
@@ -36,7 +36,7 @@ static void gl_create_button_set_sounds(buttons_l *tmp, buttons_l *button)
     }
 }
 
-static int handle_error(buttons_l *button)
+static int handle_error(buttons_t *button)
 {
     if (button->id < 1)
         return write(2,
@@ -56,20 +56,20 @@ static int handle_error(buttons_l *button)
     return (0);
 }
 
-static void gl_create_button_set_textures(buttons_l *tmp)
+static void gl_create_button_set_textures(buttons_t *tmp)
 {
     sfSprite_setTexture(tmp->sprite, tmp->texture, sfTrue);
     sfSprite_setTextureRect(tmp->sprite, tmp->rect);
     sfSprite_setPosition(tmp->sprite, tmp->pos);
 }
 
-int gl_create_button(GLib_t *glib, buttons_l *button)
+int gl_create_button(GLib_t *glib, buttons_t *button)
 {
     if (gl_create_button_check_id(glib->buttons, button->id) != 0)
         return (84);
     if (handle_error(button) != 0)
         return (84);
-    buttons_l *tmp = malloc(sizeof(*tmp));
+    buttons_t *tmp = malloc(sizeof(*tmp));
     if (tmp == NULL)
         return write(2, "(gl_create_button) Malloc failed\n", 33);
     tmp->id = button->id;
