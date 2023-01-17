@@ -108,7 +108,13 @@
 
     void gl_delete_event(GLib_t *glib, int id);
 
+    void gl_delete_events(GLib_t *glib);
+
     int gl_create_button(GLib_t *glib, buttons_t *button);
+
+    void gl_delete_buttons(GLib_t *glib);
+    
+    void gl_delete_button(GLib_t *glib, int id);
 
     void gl_draw_button(int id, buttons_t *buttons, window_t *window);
 
@@ -117,6 +123,10 @@
     void gl_button_change_state(int id, buttons_t *buttons, sfBool state);
 
     int gl_create_scene(GLib_t *glib, int id);
+
+    void gl_delete_scene(GLib_t *glib, int id);
+
+    void gl_delete_scenes(GLib_t *glib);
 
     int gl_add_button_to_scene(GLib_t *glib, int scene_id, int button_id);
 
