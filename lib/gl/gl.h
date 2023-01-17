@@ -106,6 +106,8 @@
 
     void gl_check_events(window_t *window, events_t *events);
 
+    void gl_delete_event(GLib_t *glib, int id);
+
     int gl_create_button(GLib_t *glib, buttons_t *button);
 
     void gl_draw_button(int id, buttons_t *buttons, window_t *window);
@@ -120,64 +122,23 @@
 
     void gl_draw_scene(GLib_t *glib, int id);
 
-    /**
-     * @brief create sprite
-     * @param sprites Sprites list
-     * @param sprite Sprite struct to create
-     * @return int Return 0 if success, 84 if error
-     */
     int gl_create_sprite(GLib_t *glib, sprite_t *sprite);
 
     void gl_draw_sprites(GLib_t *glib);
 
     void gl_draw_sprite(GLib_t *glib, int id);
 
-    /**
-     * @brief delete sprite id
-     * @param sprites Sprites list
-     * @param id Sprite id
-     */
     void gl_delete_sprite(GLib_t *glib, int id);
 
-    /**
-     * @brief delete sprites
-     * @param sprites Sprites list
-     */
     void gl_delete_sprites(GLib_t *glib);
 
-    /**
-     * @brief
-     * @param texts
-     * @param text
-     * @return int
-     */
     int gl_create_text(GLib_t *glib, text_t *text);
 
-    /**
-     * @brief delete text id
-     * @param texts
-     * @param id
-     */
     void gl_delete_text(GLib_t *glib, int id);
 
-    /**
-     * @brief delete texts
-     * @param texts
-     */
     void gl_delete_texts(GLib_t *glib);
 
-    /**
-     * @brief draw texts
-     * @param window
-     * @param texts
-     */
     void gl_draw_texts(GLib_t *glib);
 
-    /**
-     * @brief draw text id
-     * @param window
-     * @param texts
-     * @param id
-     */
     void gl_draw_text(GLib_t *glib, int id);
 #endif
