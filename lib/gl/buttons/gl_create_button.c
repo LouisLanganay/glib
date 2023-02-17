@@ -56,8 +56,10 @@ static int handle_error(buttons_t *button)
     return (0);
 }
 
-static void gl_create_button_set_textures(buttons_t *tmp)
+static void gl_create_button_set_textures(buttons_t *tmp, buttons_t *button)
 {
+    tmp->sprite = button->sprite;
+    tmp->texture = button->texture;
     sfSprite_setTexture(tmp->sprite, tmp->texture, sfTrue);
     sfSprite_setTextureRect(tmp->sprite, tmp->rect);
     sfSprite_setPosition(tmp->sprite, tmp->pos);
@@ -70,12 +72,8 @@ int gl_create_button(GLib_t *glib, buttons_t *button)
     if (handle_error(button) != 0)
         return (84);
     buttons_t *tmp = malloc(sizeof(*tmp));
-    if (tmp == NULL)
-        return write(2, "(gl_create_button) Malloc failed\n", 33);
     tmp->id = button->id;
     tmp->pos = button->pos;
-    tmp->sprite = button->sprite;
-    tmp->texture = button->texture;
     tmp->rect = button->rect;
     tmp->call_action = button->call_action;
     tmp->hovered = sfFalse;
@@ -83,7 +81,7 @@ int gl_create_button(GLib_t *glib, buttons_t *button)
     tmp->sb_hover = button->sb_hover;
     tmp->sb_click = button->sb_click;
     gl_create_button_set_sounds(tmp, button);
-    gl_create_button_set_textures(tmp);
+    gl_create_button_set_textures(tmp, button);
     tmp->next = glib->buttons;
     glib->buttons = tmp;
     free(button);

@@ -32,8 +32,6 @@ int gl_create_scene(GLib_t *glib, int id)
     if (gl_create_scene_check_id(glib, id) != 0)
         return (84);
     scenes_t *tmp = malloc(sizeof(*tmp));
-    if (tmp == NULL)
-        return write(2, "(gl_create_scene) Malloc failed\n", 32);
     tmp->id = id;
     tmp->buttons = malloc(sizeof(int) * 100);
     int x = SCENE_ARRAY_SIZE;

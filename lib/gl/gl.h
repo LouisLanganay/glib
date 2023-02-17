@@ -113,7 +113,7 @@
     int gl_create_button(GLib_t *glib, buttons_t *button);
 
     void gl_delete_buttons(GLib_t *glib);
-    
+
     void gl_delete_button(GLib_t *glib, int id);
 
     void gl_draw_button(int id, buttons_t *buttons, window_t *window);
