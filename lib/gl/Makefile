@@ -53,14 +53,15 @@ all: $(NAME)
 $(BUILD_DIR)/%.o: %.c
 	@ mkdir -p $(@D)
 	@ $(CC) -g $(LIBFLAGS) -c $< -o $@
-	@ echo -e "${_BLACK}${_BB_WHITE}-> $(CC)    $<${_END}"
+	@ echo -e "${_CYAN}[OK]$(_END) -> $(CC)    $(_U_WHITE)$<$(_END)"
 
 $(NAME): $(OBJ) $(SRC)
 	@ mkdir -p $(BUILD_DIR)
 	@ ar rc $(NAME) $(OBJ)
-	@ echo -e "${_BLACK}${_BB_WHITE}-> $(AR)    $(NAME)${_END}"
+	@ echo -e "${_CYAN}[OK]$(_END) -> $(AR)    $(_U_WHITE)$(NAME)${_END}"
 	@ cp ${INC_NAME} ${INC_DIR}
-	@ echo -e "${_BLACK}${_BB_WHITE}-> cp      ${INC_NAME} ${INC_DIR}${_END}"
+	@ echo -e "${_CYAN}[OK]$(_END) -> cp      $(_U_WHITE)${INC_NAME}$(_END) \
+	$(_U_WHITE)${INC_DIR}${_END}"
 
 clean:
 	@ $(RM) *.gcda
@@ -69,14 +70,14 @@ clean:
 	@ echo -e "${_BLACK}${_BB_WHITE}-> $(RM)    *.gcno${_END}"
 	@ $(RM)	$(OBJ)
 	@ echo -e "${_BLACK}${_BB_WHITE}-> $(RM)    $(OBJ)${_END}"
-	@ echo -e "${_B_RED}[CLEAN]${_END} Clean done"
+	@ echo -e "${_B_BLUE}[CLEAN]${_END} Clean done"
 
 fclean: clean
 	@ $(RM) -r $(BUILD_DIR)
 	@ echo -e "${_BLACK}${_BB_WHITE}-> $(RM)    $(BUILD_DIR)${_END}"
 	@ $(RM)	$(NAME)
 	@ echo -e "${_BLACK}${_BB_WHITE}-> $(RM)    $(NAME)${_END}"
-	@ echo -e "${_B_RED}[FCLEAN]${_END} Fclean done"
+	@ echo -e "${_B_BLUE}[FCLEAN]${_END} Fclean done"
 
 re: fclean all
 
