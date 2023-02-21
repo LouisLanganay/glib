@@ -79,6 +79,12 @@
         struct text_s *next;
     } text_t;
 
+    typedef struct fonts_l {
+        int id;
+        sfFont *font;
+        struct fonts_l *next;
+    } fonts_t;
+
     typedef struct GLib_s {
         window_t *window;
         events_t *events;
@@ -86,6 +92,7 @@
         scenes_t *scenes;
         sprite_t *sprites;
         text_t *texts;
+        fonts_t *fonts;
     } GLib_t;
 
 
@@ -151,4 +158,10 @@
     void gl_draw_texts(GLib_t *glib);
 
     void gl_draw_text(GLib_t *glib, int id);
+
+    int gl_create_font(GLib_t *glib, int id, char *path);
+
+    void gl_delete_font(GLib_t *glib, int id);
+
+    void gl_delete_fonts(GLib_t *glib);
 #endif

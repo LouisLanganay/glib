@@ -39,6 +39,9 @@ SRC += gl_button_change_state.c
 SRC += gl_add_button_to_scene.c
 SRC += gl_create_scene.c
 SRC += gl_draw_scene.c
+SRC += gl_create_font.c
+SRC += gl_delete_font.c
+SRC += gl_delete_fonts.c
 
 
 
