@@ -25,7 +25,6 @@ int gl_create_text(GLib_t *glib, text_t *text)
     text_t *tmp = malloc(sizeof(*tmp));
     tmp->id = text->id;
     tmp->pos = text->pos;
-    tmp->text = text->text;
     tmp->font = text->font;
     tmp->scale = text->scale;
     tmp->color = text->color;

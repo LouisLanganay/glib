@@ -19,7 +19,7 @@ static void gl_delete_font_id(fonts_t *prev, fonts_t *tmp, GLib_t *glib)
 
 void gl_delete_font(GLib_t *glib, int id)
 {
-    fonts_t *tmp = glib->texts;
+    fonts_t *tmp = glib->fonts;
     fonts_t *prev = NULL;
     while (tmp != NULL) {
         if (tmp->id == id)

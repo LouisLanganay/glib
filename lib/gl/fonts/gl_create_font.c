@@ -20,7 +20,7 @@ static int gl_create_font_check_id(fonts_t *fonts, int id)
 
 int gl_create_font(GLib_t *glib, int id, char *path)
 {
-    if (gl_create_font_check_id(glib->texts, id) != 0)
+    if (gl_create_font_check_id(glib->fonts, id) != 0)
         return (84);
     text_t *tmp = malloc(sizeof(*tmp));
     tmp->id = id;
