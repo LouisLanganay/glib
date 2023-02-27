@@ -32,6 +32,7 @@ static void gl_button_hovered(buttons_t *tmp)
             sfSound_setPlayingOffset(tmp->ss_click, sfSeconds(0));
             sfSound_play(tmp->ss_click);
         }
+        tmp->rect.left = tmp->rect.width * 3;
         tmp->call_action(tmp->id);
     }
 }
