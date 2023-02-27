@@ -64,3 +64,5 @@ doxygen-awesome-css/
 # Test files
 src/
 assets/
+resources/
+includes/

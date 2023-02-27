@@ -16,6 +16,7 @@ VPATH += ./sprites
 VPATH += ./texts
 VPATH += ./buttons
 VPATH += ./scenes
+VPATH += ./fonts
 
 vpath %.c $(VPATH)
 

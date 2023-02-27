@@ -45,7 +45,7 @@
         sfSoundBuffer *sb_hover;
         sfSound *ss_click;
         sfSoundBuffer *sb_click;
-        void (*call_action)(int id);
+        void (*call_action)(int id, void*);
         struct buttons_l *next;
     } buttons_t;
 
@@ -125,7 +125,7 @@
 
     void gl_draw_button(int id, buttons_t *buttons, window_t *window);
 
-    void gl_buttons_hovered(buttons_t *buttons, window_t *window);
+    void gl_buttons_hovered(buttons_t *buttons, window_t *window, void*);
 
     void gl_button_change_state(int id, buttons_t *buttons, sfBool state);
 
