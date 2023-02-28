@@ -29,7 +29,7 @@
     typedef struct events_l {
         int id;
         sfEventType type;
-        void (*event)(window_t *window);
+        void (*event)(window_t *window, void*);
         struct events_l *next;
     } events_t;
 
@@ -108,10 +108,10 @@
         GLib_t *glib,
         int id,
         sfEventType type,
-        void (*event)(window_t *window)
+        void (*event)(window_t *window, void*)
     );
 
-    void gl_check_events(window_t *window, events_t *events);
+    void gl_check_events(window_t *window, events_t *events, void *main);
 
     void gl_delete_event(GLib_t *glib, int id);
 

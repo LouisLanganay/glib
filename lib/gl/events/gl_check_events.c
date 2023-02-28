@@ -14,22 +14,26 @@ static int handle_errors(window_t *window, events_t *events)
     return (0);
 }
 
-static events_t *gl_check_events_each(window_t *window, events_t *tmp)
+static events_t *gl_check_events_each(
+    window_t *window,
+    events_t *tmp,
+    void *main
+)
 {
     if (window->event.type == tmp->type)
-        tmp->event(window);
+        tmp->event(window, main);
     tmp = tmp->next;
     return tmp;
 }
 
-void gl_check_events(window_t *window, events_t *events)
+void gl_check_events(window_t *window, events_t *events, void *main)
 {
     if (handle_errors(window, events) != 0)
         exit(84);
     events_t *tmp = events;
     while (sfRenderWindow_pollEvent(window->window, &window->event)) {
         while (tmp) {
-            tmp = gl_check_events_each(window, tmp);
+            tmp = gl_check_events_each(window, tmp, main);
         }
     }
 }

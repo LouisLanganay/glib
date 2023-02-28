@@ -22,7 +22,7 @@ int gl_create_event(
     GLib_t *glib,
     int id,
     sfEventType type,
-    void (*event)(window_t *window)
+    void (*event)(window_t *window, void *main)
 )
 {
     if (gl_create_event_check_id(glib->events, id) != 0)
