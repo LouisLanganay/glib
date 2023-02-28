@@ -18,6 +18,13 @@
 
     #define SCENE_ARRAY_SIZE 100;
 
+    typedef struct create_window_s {
+        sfUint32 style;
+        int width;
+        int height;
+        char *title;
+        int framerate;
+    } create_window_t;
 
     typedef struct window_s {
         sfRenderWindow* window;
@@ -98,10 +105,7 @@
 
 
     window_t *gl_create_window(
-        int width,
-        int height,
-        char *title,
-        int framerate
+        create_window_t *my_window
     );
 
     int gl_create_event(

@@ -18,22 +18,23 @@ static int handle_error(int width, int height, char *title, int framerate)
     return 0;
 }
 
-window_t *gl_create_window(int width, int height, char *title, int framerate)
+window_t *gl_create_window(create_window_t *my_window)
 {
-    if (handle_error(width, height, title, framerate) != 0)
+    if (handle_error(my_window->width, my_window->height, my_window->title,
+        my_window->framerate) != 0)
         exit(84);
 
     window_t *window = malloc(sizeof(window_t));
 
-    window->mode = (sfVideoMode){width, height, 32};
+    window->mode = (sfVideoMode){my_window->width, my_window->height, 32};
     window->window = sfRenderWindow_create(window->mode,
-        title, sfTitlebar | sfClose, 0);
+        my_window->title, my_window->style, 0);
     window->clock = sfClock_create();
     window->event;
 
     if (!window->window)
         exit(84);
 
-    sfRenderWindow_setFramerateLimit(window->window, framerate);
+    sfRenderWindow_setFramerateLimit(window->window, my_window->framerate);
     return (window);
 }
