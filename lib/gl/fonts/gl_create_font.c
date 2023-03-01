@@ -22,7 +22,7 @@ int gl_create_font(GLib_t *glib, int id, char *path)
 {
     if (gl_create_font_check_id(glib->fonts, id) != 0)
         return (84);
-    text_t *tmp = malloc(sizeof(*tmp));
+    fonts_t *tmp = malloc(sizeof(*tmp));
     tmp->id = id;
     tmp->font = sfFont_createFromFile(path);
     tmp->next = glib->fonts;
