@@ -5,7 +5,7 @@
 ** gl_get_font
 */
 
-#include "gl.h"
+#include "../gl.h"
 
 sfFont *gl_get_font(GLib_t *glib, int id)
 {
