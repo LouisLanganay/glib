@@ -189,4 +189,6 @@
 
     void gl_draw_ddown(int id, window_t *window, GLib_t *glib);
 
+    void gl_ddowns_hovered(GLib_t *glib, window_t *window, void *main);
+
 #endif
