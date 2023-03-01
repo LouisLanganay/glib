@@ -168,4 +168,7 @@
     void gl_delete_font(GLib_t *glib, int id);
 
     void gl_delete_fonts(GLib_t *glib);
+
+    sfFont *gl_get_font(GLib_t *glib, int id);
+
 #endif
