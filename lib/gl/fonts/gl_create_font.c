@@ -25,6 +25,6 @@ int gl_create_font(GLib_t *glib, int id, char *path)
     text_t *tmp = malloc(sizeof(*tmp));
     tmp->id = id;
     tmp->font = sfFont_createFromFile(path);
-    tmp->next = glib->texts;
-    glib->texts = tmp;
+    tmp->next = glib->fonts;
+    glib->fonts = tmp;
 }
