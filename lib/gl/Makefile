@@ -17,6 +17,7 @@ VPATH += ./texts
 VPATH += ./buttons
 VPATH += ./scenes
 VPATH += ./fonts
+VPATH += ./dropdown
 
 vpath %.c $(VPATH)
 
@@ -44,6 +45,9 @@ SRC += gl_create_font.c
 SRC += gl_delete_font.c
 SRC += gl_delete_fonts.c
 SRC += gl_get_font.c
+SRC += gl_create_ddown.c
+SRC += gl_draw_ddown.c
+SRC += gl_add_child_ddown.c
 
 
 

@@ -17,4 +17,5 @@ void gl_draw_text(GLib_t *glib, int id)
         }
         tmp = tmp->next;
     }
+    write(2, "(gl_draw_text) Text id not found\n", 33);
 }

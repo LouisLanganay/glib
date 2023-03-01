@@ -40,6 +40,17 @@
         struct events_l *next;
     } events_t;
 
+    typedef struct dropdown_l {
+        int id;
+        sfBool hovered;
+        sfBool disabled;
+        sfVector2f pos;
+        int text_id;
+        void (*call_action)(int id, void*);
+        struct dropdown_l *childs;
+        struct dropdown_l *next;
+    } dropdown_t;
+
     typedef struct buttons_l {
         int id;
         sfBool hovered;
@@ -100,6 +111,7 @@
         sprite_t *sprites;
         text_t *texts;
         fonts_t *fonts;
+        dropdown_t *ddowns;
     } GLib_t;
 
 
@@ -170,5 +182,11 @@
     void gl_delete_fonts(GLib_t *glib);
 
     sfFont *gl_get_font(GLib_t *glib, int id);
+
+    void gl_add_child_ddown(dropdown_t *ddowns, int id, dropdown_t *child);
+
+    int gl_create_ddown(GLib_t *glib, dropdown_t *ddown);
+
+    void gl_draw_ddown(int id, window_t *window, GLib_t *glib);
 
 #endif

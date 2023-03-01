@@ -25,6 +25,7 @@ static void gl_create_button_set_sounds(buttons_t *tmp, buttons_t *button)
         tmp->ss_hover = sfSound_create();
         sfSound_setBuffer(tmp->ss_hover, tmp->sb_hover);
     } else {
+        tmp->ss_hover = NULL;
         tmp->sb_hover = NULL;
     }
     if (tmp->sb_click != NULL) {
@@ -32,6 +33,7 @@ static void gl_create_button_set_sounds(buttons_t *tmp, buttons_t *button)
         tmp->ss_click = sfSound_create();
         sfSound_setBuffer(tmp->ss_click, tmp->sb_click);
     } else {
+        tmp->ss_click = NULL;
         tmp->sb_click = NULL;
     }
 }
