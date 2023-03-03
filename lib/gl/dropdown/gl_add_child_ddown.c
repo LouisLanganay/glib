@@ -9,9 +9,7 @@
 
 static void gl_add_child_in_linked_list(dropdown_t *tmp, dropdown_t *child)
 {
-    while (tmp->childs != NULL) {
-        tmp = tmp->childs;
-    }
+    child->next = tmp->childs;
     tmp->childs = child;
 }
 
@@ -21,6 +19,7 @@ void gl_add_child_ddown(dropdown_t *ddowns, int id, dropdown_t *child)
 
     while (tmp) {
         if (tmp->id == id) {
+            printf("Add child %d to %d\n", child->id, tmp->id);
             gl_add_child_in_linked_list(tmp, child);
             return;
         }

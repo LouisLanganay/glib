@@ -9,8 +9,11 @@
 
 static void gl_draw_ddown_id(dropdown_t *ddown, GLib_t *glib)
 {
-    if (ddown->disabled == sfTrue)
-        return;
+    sfRectangleShape_setPosition(ddown->background, (sfVector2f){
+        ddown->pos.x - 10, ddown->pos.y
+    });
+    sfRenderWindow_drawRectangleShape(glib->window->window,
+        ddown->background, NULL);
     if (ddown->text_id)
         gl_draw_text(glib, ddown->text_id);
 }

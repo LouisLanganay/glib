@@ -40,6 +40,8 @@ int gl_create_ddown(GLib_t *glib, dropdown_t *ddown)
     tmp->hovered = sfFalse;
     tmp->disabled = sfFalse;
     tmp->pos = ddown->pos;
+    tmp->background = ddown->background;
+    tmp->bg_colors = ddown->bg_colors;
     tmp->text_id = ddown->text_id;
     tmp->call_action = ddown->call_action;
     tmp->childs = NULL;

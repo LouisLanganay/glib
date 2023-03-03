@@ -49,6 +49,8 @@ SRC += gl_create_ddown.c
 SRC += gl_draw_ddown.c
 SRC += gl_add_child_ddown.c
 SRC += gl_ddowns_hovered.c
+SRC += gl_get_text.c
+SRC += gl_ddown_draw_childs.c
 
 
 

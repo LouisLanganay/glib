@@ -18,6 +18,11 @@
 
     #define SCENE_ARRAY_SIZE 100;
 
+    typedef struct colors_e {
+        sfColor normal;
+        sfColor hovered;
+    } colors_t;
+
     typedef struct create_window_s {
         sfUint32 style;
         int width;
@@ -46,6 +51,8 @@
         sfBool disabled;
         sfVector2f pos;
         int text_id;
+        colors_t bg_colors;
+        sfRectangleShape *background;
         void (*call_action)(int id, void*);
         struct dropdown_l *childs;
         struct dropdown_l *next;
@@ -190,5 +197,9 @@
     void gl_draw_ddown(int id, window_t *window, GLib_t *glib);
 
     void gl_ddowns_hovered(GLib_t *glib, window_t *window, void *main);
+
+    sfText *gl_get_text(GLib_t *glib, int id);
+
+    void gl_ddown_draw_childs(dropdown_t *tmp, GLib_t *glib, void *main);
 
 #endif
