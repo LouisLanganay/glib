@@ -33,7 +33,7 @@ window_t *gl_create_window(create_window_t *my_window)
     window->event;
 
     if (!window->window)
-        return;
+        return NULL;
 
     sfRenderWindow_setFramerateLimit(window->window, my_window->framerate);
     free(my_window);
