@@ -22,7 +22,7 @@ window_t *gl_create_window(create_window_t *my_window)
 {
     if (handle_error(my_window->width, my_window->height, my_window->title,
         my_window->framerate) != 0)
-        return;
+        return NULL;
 
     window_t *window = malloc(sizeof(window_t));
 
